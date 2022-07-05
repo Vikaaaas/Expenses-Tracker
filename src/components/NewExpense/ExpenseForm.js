@@ -21,7 +21,7 @@ export default function ExpenseForm(props) {
     {
       const expenseData = {
         title:enteredTitle,
-        amount: enteredAmount,
+        amount: +enteredAmount,
         date: new Date(enteredDate)
       }
       e.preventDefault();
@@ -30,7 +30,6 @@ export default function ExpenseForm(props) {
       setEnteredAmount('')
       setEnteredDate('')
     }
-
     
     
   return (
@@ -49,6 +48,9 @@ export default function ExpenseForm(props) {
         <div className="new-expense__control">
           <label>Date</label>
           <input type="date" min="2019-01-01" max="2022-12-21" onChange={dateChangeHandler}/>
+        </div>
+        <div className="new-expense__actions">
+          <button onClick={props.toogleFlag} type="submit">Cancel</button>
         </div>
         <div className="new-expense__actions">
           <button type="submit">Add Expense</button>

@@ -1,9 +1,10 @@
 //JUST FOR FORMS
-import React from 'react'
+import React,{useState} from 'react'
 import './NewExpense.css'
 import ExpenseForm from './ExpenseForm'
 
 export default function NewExpense(props) {
+  const [flag,setFlag]=useState(0);
   const SaveExpenseDataHandler=(enteredExpenseData)=>{
     const expenseData = {
       ...enteredExpenseData,
@@ -11,10 +12,16 @@ export default function NewExpense(props) {
     }
     props.onSave(expenseData);
   }
+
+  const toogle=()=>{
+    setFlag(0);
+  }
   
   return (
     <div className='new-expense'>
-        <ExpenseForm onSaveExpenseData={SaveExpenseDataHandler}/>
+      {flag?<ExpenseForm toogleFlag={toogle} onSaveExpenseData={SaveExpenseDataHandler}/>:<div><button onClick={()=>setFlag(1)}>Add Expense</button></div>}
+        
+        
     </div>
   )
 }
